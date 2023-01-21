@@ -1,0 +1,28 @@
+<p>books works!</p>
+
+<button (click)="add()">Add</button>
+
+<pre>{{ vm$ | async | json }}</pre>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Stock</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of (vm$ | async)!.books">
+            <td>{{ book.title }}</td>
+            <td>{{ book.stock }}</td>
+            <td>
+                <button (click)="delete(book.id)">Delete</button>
+                <button (click)="incrementStock(book.id)">Increment</button>
+                <button (click)="decrementStock(book.id)">Decrement</button>
+                <button (click)="resetStock(book.id)">Reset</button>
+                <button (click)="setStock(book.id)">Set</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

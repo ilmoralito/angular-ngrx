@@ -1,0 +1,36 @@
+<p>todos works!</p>
+
+<button (click)="add()">Add</button>
+
+<pre>{{ vm$ | async | json }}</pre>
+
+<button
+    (click)="filter('all')"
+    [ngStyle]="{
+        'font-weight': (vm$ | async)!.filter === 'all' ? 'bold' : 'normal'
+    }"
+>
+    All
+</button>
+<button
+    (click)="filter('pending')"
+    [ngStyle]="{
+        'font-weight': (vm$ | async)!.filter === 'pending' ? 'bold' : 'normal'
+    }"
+>
+    PENDING
+</button>
+<button
+    (click)="filter('done')"
+    [ngStyle]="{
+        'font-weight': (vm$ | async)!.filter === 'done' ? 'bold' : 'normal'
+    }"
+>
+    DONE
+</button>
+
+<ul>
+    <li *ngFor="let todo of (vm$ | async)!.todos">
+        {{ todo.task }} <button (click)="toggle(todo.id)">Toggle</button>
+    </li>
+</ul>
